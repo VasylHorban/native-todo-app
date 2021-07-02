@@ -11,6 +11,10 @@ const TodoForm = () => {
     if (newValue !== ' ') setValue(newValue);
   };
 
+  const deleteHandler = id => {
+    setTasks(tasks.filter(task=> task.id !== id));
+  }
+
   const onPressHandler = () => {
     if (value !== '' && value !== null) {
       setTasks([...tasks, { value: value, id: generateId() }]);
@@ -33,7 +37,7 @@ const TodoForm = () => {
         />
         <Button title="add task" onPress={onPressHandler} />
       </View>
-      <TasksList tasks={tasks} />
+      <TasksList onDelete={deleteHandler} tasks={tasks} />
     </View>
   );
 };
